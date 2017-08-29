@@ -13,7 +13,6 @@ namespace csmatio.io
 	public class MatFileHeader
 	{
 		private static string DEFAULT_DESCRIPTIVE_TEXT = "MATLAB 5.0 MAT-file, Platform: " +
-													Environment.OSVersion.Platform +
 													", CREATED on: ";
 		private static int DEFAULT_VERSION = 0x0100;
 		private static byte[] DEFAULT_ENDIAN_INDICATOR = new byte[] {(byte)'I', (byte)'M'};

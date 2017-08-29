@@ -7,17 +7,7 @@ using System.Text;
 using csmatio.common;
 using csmatio.types;
 
-#if !NET20 && !NET40 && !NET45
-#error .NET-Version undefiniert
-#endif
-
-#if NET20
-using zlib = ComponentAce.Compression.Libs.ZLib;
-#endif
-
-#if NET40 || NET45
 using System.IO.Compression;
-#endif
 
 namespace csmatio.io
 {
@@ -94,18 +84,6 @@ namespace csmatio.io
 
 					// Compress data to save storage
 					MemoryStream compressed = new MemoryStream();
-#if NET20
-                    zlib.ZOutputStream zos = new zlib.ZOutputStream(compressed, -1);
-                    byte[] input = new byte[128];
-                    int len = 0;
-                    while ((len = memstrm.Read(input, 0, input.Length)) > 0)
-                        zos.Write(input, 0, len);
-                    zos.Flush();
-                    zos.Close();  // important to note that the zlib.ZOutputStream needs to close before writting out the data to the Base.stream
-
-					byte[] compressedBytes = compressed.ToArray();
-#endif
-#if NET40 || NET45
 					uint s1 = 1, s2 = 0, crc = 0; // Adler-32 CRC
 					using (DeflateStream df = new DeflateStream(compressed, CompressionMode.Compress, true))
 					{
@@ -135,7 +113,6 @@ namespace csmatio.io
 						compressedBytes[i] = (byte)compressed.ReadByte();
 					}
 					BitConverter.GetBytes(crc).CopyTo(compressedBytes, compressedBytes.Length - 4);
-#endif
 
 					// write COMPRESSED tag and compressed data into output channel
 					ByteBuffer buf = new ByteBuffer(2 * 4 + compressedBytes.Length);
@@ -145,7 +122,7 @@ namespace csmatio.io
 
 					stream.Write(buf.Array());
 
-					compressed.Close();
+					compressed.Dispose();
 				}
 				else
 				{
@@ -155,7 +132,7 @@ namespace csmatio.io
 
 			}
 
-			stream.Close();
+			stream.Dispose();
 		}
 
 		/// <summary>

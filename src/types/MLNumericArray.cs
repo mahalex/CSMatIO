@@ -463,9 +463,9 @@ namespace csmatio.types
 			{
 				int retval;
 				Type tt = typeof(T);
-				if (tt.IsValueType)
+				if (!tt.IsByRef)
 				{
-					retval = Marshal.SizeOf(tt);
+					retval = Marshal.SizeOf<T>();
 				}
 				else
 				{
