@@ -87,6 +87,8 @@ namespace csmatio.io
 					return (char)_buf.ReadDouble();
 				case MatDataTypes.miUTF8:
 					return (char)_buf.ReadByte();
+				case MatDataTypes.miUTF16:
+					return (char)_buf.ReadUInt16();
 				default:
 					throw new ArgumentException("Unknown data type: " + _type);
 			}

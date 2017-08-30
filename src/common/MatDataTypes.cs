@@ -38,7 +38,7 @@ namespace csmatio.common
 		public const int miUTF8			= 16;
 		/// <summary>Unicode UTF-16 Encoded Character Data</summary>
 		public const int miUTF16		= 17;
-		/// <summary>Unicode UTF-12 Encoded Character Data</summary>
+		/// <summary>Unicode UTF-32 Encoded Character Data</summary>
 		public const int miUTF32		= 18;
 
 		/// <summary>Size of 64-bit, signed int in bytes</summary>
@@ -63,6 +63,12 @@ namespace csmatio.common
 		public const int miSIZE_SINGLE = 4;
 		/// <summary>Size of an 8-bit char in bytes</summary>
 		public const int miSIZE_CHAR	= 1;
+		/// <summary>Size of an 8-bit Unicode char in bytes</summary>
+		public const int miSIZE_UTF8 = 1;
+		/// <summary>Size of an 16-bit Unicode char in bytes</summary>
+		public const int miSIZE_UTF16 = 2;
+		/// <summary>Size of an 32-bit Unicode char in bytes</summary>
+		public const int miSIZE_UTF32 = 4;
 
 		/// <summary>
 		/// Return the number of bytes for a given type.
@@ -93,6 +99,12 @@ namespace csmatio.common
 					return miSIZE_DOUBLE;
 				case MatDataTypes.miSINGLE:
 					return miSIZE_SINGLE;
+				case MatDataTypes.miUTF8:
+					return miSIZE_UTF8;
+				case MatDataTypes.miUTF16:
+					return miSIZE_UTF16;
+				case MatDataTypes.miUTF32:
+					return miSIZE_UTF32;
 				default:
 					return 1;
 			}
