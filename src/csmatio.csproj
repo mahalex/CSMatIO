@@ -3,7 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>CSMatIO.NetStandard</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
     <Authors>Alexander Luzgarev</Authors>
     <Description>CSMatIO is a .NET Library to read, write, and manipulate Matlab binary MAT-files written by David Zier.</Description>
     <PackageRequreLicenseAcceptance>true</PackageRequreLicenseAcceptance>
