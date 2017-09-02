@@ -197,3 +197,4 @@ FakesAssemblies/
 *.opt
 
 .idea/
+.vscode/
